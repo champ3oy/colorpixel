@@ -24,8 +24,8 @@ def hello_name(number):
             response.append({"color": "rgb" + str(pixel)})
 
         return {"status": "Success", "colors": response}
-    except error:
-        print(error)
+    except:
+        # print(error)
         return {"status": "Failed", "message": "Sorry an error"}
 
 
