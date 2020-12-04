@@ -11,9 +11,9 @@ def hello_name(number):
 
         uploaded_file = request.files["file"]
         if uploaded_file.filename != "":
-            uploaded_file.save("images/" + uploaded_file.filename)
+            uploaded_file.save(uploaded_file.filename)
 
-        color_thief = ColorThief("images/" + uploaded_file.filename)
+        color_thief = ColorThief(uploaded_file.filename)
         dominant_color = color_thief.get_color(quality=1)
 
         palette = color_thief.get_palette(color_count=number if number > 0 else 5)
@@ -24,9 +24,9 @@ def hello_name(number):
             response.append({"color": "rgb" + str(pixel)})
 
         return {"status": "Success", "colors": response}
-    except:
-
-        return {"status": "Failed", "message": "Sorry an error occured."}
+    except error:
+        print(error)
+        return {"status": "Failed", "message": "Sorry an error"}
 
 
 if __name__ == "__main__":
